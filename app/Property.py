@@ -1,5 +1,5 @@
 from csv import DictReader
-import sqlite3
+import psycopg2
 
 class Property:
     def __init__(self, id, name, value, numberOfBedrooms, isNewHome, hasGarden, image, features, location):
@@ -23,7 +23,7 @@ def render_property() -> Property:
         return Property(first_list["listing_id"], None, first_list["pricing.price"], first_list["total_bedrooms"], None, None, first_list["feature_list"], None, None)
 
 def select_property():
-    connection = sqlite3.connect("data/listings.db")
+    connection = psycopg2.connect("data/listings.db")
     cur = connection.cursor()
     cur.execute("""
         SELECT *
@@ -33,9 +33,9 @@ def select_property():
         AND feature_list = %s
         AND new_home = %s
         AND location = %s
-        """
-        LIMIT 1,
-        (2, 500000, "garden", 1, "London")
+        LIMIT 1
+        """,
+        (2, 500000, "garden", 1, "London"))
     connection.commit()
     property = cur.fetchall()
     print(property)
