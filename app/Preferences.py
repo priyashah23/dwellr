@@ -1,7 +1,5 @@
-import Property from Objects.Property
+from PurchaseProperty import PurchaseProperty
 
 class Preferences:
-    def __init__(self, user_id, properties):
-        self.id = id
-        self.user_id = user_id
-        self.preference = preference
+    def __init__(self, properties : list)
+        self.properties = properties
