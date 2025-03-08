@@ -1,5 +1,5 @@
 import logging
-from flask import Flask
+from flask import Flask, jsonify
 from flaskext.mysql import MySQL
 import os
 
@@ -28,11 +28,12 @@ def get_property():
     ''')
 
     result = cursor.fetchall()
-    logger.info(result)
-    logger.info("Hello")
+    columns = [desc[0] for desc in cursor.description]
+    data = [dict(zip(columns, row)) for row in result]
+
     cursor.close()
     conn.close()
-    return "<p>Property</p>"
+    return jsonify(data)
 
 @app.route("/user/<user_id>", methods=['GET'])
 def get_quiz_question():
