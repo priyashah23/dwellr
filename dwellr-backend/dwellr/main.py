@@ -1,3 +1,4 @@
+import logging
 from flask import Flask
 from flaskext.mysql import MySQL
 import os
@@ -10,26 +11,28 @@ app.config['MYSQL_DATABASE_DB'] = os.environ.get('MYSQL_DATABASE', 'dwellr')
 app.config['MYSQL_DATABASE_HOST'] = os.environ.get('MYSQL_HOST', 'db')
 mysql.init_app(app)
 
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logger = logging.getLogger(__name__)
+
 @app.route("/")
 def hello_world():
+    return "<p>Hello, World!</p>"
+
+@app.route("/property", methods=['GET'])
+def get_property(): 
     conn = mysql.connect()
     cursor = conn.cursor()
 
-    cursor.execute("SELECT * FROM listings")
+    cursor.execute('''
+        SELECT * FROM listings LIMIT 1;
+    ''')
 
-    myresult = cursor.fetchall()
-    print(myresult)
-
+    result = cursor.fetchall()
+    logger.info(result)
+    logger.info("Hello")
     cursor.close()
     conn.close()
-
-    return "<p>Hello, World!</p>"
-
-@app.route("/property", methods=['GET']) # We will need an id of the property and the user
-def get_property(): 
-    property_dict = {"name": 'ST ANDREWS ST'}
-    #property = Property.render_property()
-    return property_dict
+    return "<p>Property</p>"
 
 @app.route("/user/<user_id>", methods=['GET'])
 def get_quiz_question():
