@@ -53,6 +53,7 @@ const PropertyDetails = ({ property }: { property: Property }) => {
       <Flex gap={2} flexWrap="wrap">
         {property.features.map((feature) => (
           <Badge
+            key={feature}
             fontSize="sm"
             bg="badgeLevel4Background"
             color="badgeLevel4Text"
@@ -72,7 +73,7 @@ const PropertyDetails = ({ property }: { property: Property }) => {
   );
 };
 
-const PropertyCard = ({ property, removeCard, active }: PropertyCardProps) => {
+const PropertyCard = ({ property, removeCard, active, ...props }: PropertyCardProps) => {
   const [leaveX, setLeaveX] = useState(0);
   const onDragEnd = (_e: any, info: PanInfo) => {
     if (info.offset.x > 100) {
@@ -106,12 +107,12 @@ const PropertyCard = ({ property, removeCard, active }: PropertyCardProps) => {
             scale: 0.5,
             transition: { duration: 0.2 }
           }}
-          data-testid="active-card"
+          {...props}
         >
           <PropertyDetails property={property} />
         </Box>
       ) : (
-        <Box __css={cardStyles()}>
+        <Box __css={cardStyles()} {...props}>
           <PropertyDetails property={property} />
         </Box>
       )}

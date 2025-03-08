@@ -1,12 +1,11 @@
 import './App.css';
 import { Box, Button, Stack } from '@chakra-ui/react';
-// import { useQuery } from '@tanstack/react-query';
-// import { getProperties } from './api';
 import { ReactComponent as Logo } from './assets/Dwellr_Logo.svg';
 import Main from './ui/layout/Main';
+import { useNavigate } from 'react-router';
 
 function App() {
-  // const { isLoading, isError, data } = useQuery({ queryKey: ['todos'], queryFn: getProperties });
+  const navigate = useNavigate();
 
   return (
     <Main>
@@ -19,7 +18,10 @@ function App() {
         border="1px solid"
         borderColor="cardDefaultBorderDefault"
       >
-        <Button variant="primary">Log in</Button>
+        {/* This would actually log in in a real app, just pretend to for this demo. */}
+        <Button variant="primary" onClick={() => navigate('/properties')}>
+          Log in
+        </Button>
         <Button variant="secondary">Register</Button>
       </Stack>
     </Main>

@@ -5,7 +5,7 @@ import App from './App.tsx';
 import { ChakraProvider, ColorModeScript } from '@chakra-ui/react';
 import theme from './ui/theme/theme.ts';
 import { BrowserRouter, Routes, Route } from 'react-router';
-import Preferences from './Preferences.tsx';
+import Preferences from './Preferences/Preferences.tsx';
 import NotFound from './NotFound.tsx';
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
 import Properties from './Properties/Properties.tsx';

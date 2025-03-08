@@ -12,7 +12,7 @@ import {
   InputGroup,
   InputLeftElement
 } from '@chakra-ui/react';
-import Main from './ui/layout/Main';
+import Main from '../ui/layout/Main';
 import { useForm, SubmitHandler } from 'react-hook-form';
 
 type FormValues = {
