@@ -1,3 +1,5 @@
+import Preferences from Objects.Preferences
+
 class User:
     def __init__(self, id, name, age):
         self.id = id
@@ -6,3 +8,6 @@ class User:
 
     def __str__(self):
         return f"Name: {self.name}, Age: {self.age}"
+
+    def SourcePreferences(self, preferences):
+        if preferences
