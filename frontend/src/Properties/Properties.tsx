@@ -32,7 +32,7 @@ const Properties = () => {
     if (liked === 5) {
       toast({
         title: 'Achievement Unlocked',
-        description: "You've liked 10 properties so far, you're closer to your dream dwelling!",
+        description: "You've liked 5 properties so far, you're closer to your dream dwelling!",
         status: 'success',
         duration: 9000,
         isClosable: true
@@ -44,7 +44,7 @@ const Properties = () => {
     if (noped === 5) {
       toast({
         title: 'Achievement Unlocked',
-        description: "You've noped 10 properties so far, you might need to adjust your preferences!",
+        description: "You've noped 5 properties so far, you might need to adjust your preferences!",
         status: 'warning',
         duration: 9000,
         isClosable: true,
