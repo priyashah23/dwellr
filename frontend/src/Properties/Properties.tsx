@@ -29,7 +29,7 @@ const Properties = () => {
   };
 
   useEffect(() => {
-    if (liked > 5) {
+    if (liked === 5) {
       toast({
         title: 'Achievement Unlocked',
         description: "You've liked 10 properties so far, you're closer to your dream dwelling!",
@@ -41,7 +41,7 @@ const Properties = () => {
   }, [liked]);
 
   useEffect(() => {
-    if (noped > 5) {
+    if (noped === 5) {
       toast({
         title: 'Achievement Unlocked',
         description: "You've noped 10 properties so far, you might need to adjust your preferences!",
