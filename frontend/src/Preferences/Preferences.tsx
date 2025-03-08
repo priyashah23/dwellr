@@ -13,20 +13,29 @@ import {
   InputLeftElement
 } from '@chakra-ui/react';
 import Main from '../ui/layout/Main';
-import { useForm, SubmitHandler } from 'react-hook-form';
+import { useForm, SubmitHandler, Controller } from 'react-hook-form';
 
 type FormValues = {
   priceRange: number;
   bedrooms: number;
-  isFlat: boolean;
-  isNewHome: boolean;
-  hasGarden: boolean;
+  isFlat: string;
+  isNewHome: string;
+  hasGarden: string;
   features: string[];
   location: string;
 };
 
 const Preferences = () => {
-  const { register, handleSubmit } = useForm<FormValues>();
+  const { register, handleSubmit, control } = useForm<FormValues>({
+    defaultValues: {
+      priceRange: 200000,
+      bedrooms: 2,
+      isFlat: 'false',
+      isNewHome: 'false',
+      hasGarden: 'true',
+      features: ['1']
+    }
+  });
   const onSubmit: SubmitHandler<FormValues> = (data) => console.log(data);
 
   return (
@@ -57,46 +66,70 @@ const Preferences = () => {
           <Input type="number" {...register('bedrooms')} />
         </FormControl>
 
-        <FormControl>
-          <FormLabel>Property type</FormLabel>
-          <RadioGroup>
-            <Stack direction="row">
-              <Radio value="flat">Flat</Radio>
-              <Radio value="house">House</Radio>
-            </Stack>
-          </RadioGroup>
-        </FormControl>
+        <Controller
+          name="isFlat"
+          control={control}
+          render={({ field }) => (
+            <FormControl>
+              <FormLabel>Property type</FormLabel>
+              <RadioGroup id="isFlat" {...field}>
+                <Stack direction="row">
+                  <Radio value="true">Flat</Radio>
+                  <Radio value="false">House</Radio>
+                </Stack>
+              </RadioGroup>
+            </FormControl>
+          )}
+        />
 
-        <FormControl>
-          <FormLabel>New home</FormLabel>
-          <RadioGroup>
-            <Stack direction="row">
-              <Radio value="yes">Yes</Radio>
-              <Radio value="no">No</Radio>
-            </Stack>
-          </RadioGroup>
-        </FormControl>
+        <Controller
+          name="isNewHome"
+          control={control}
+          render={({ field }) => (
+            <FormControl>
+              <FormLabel>New home</FormLabel>
+              <RadioGroup id="isNewHome" {...field}>
+                <Stack direction="row">
+                  <Radio value="true">Yes</Radio>
+                  <Radio value="false">No</Radio>
+                </Stack>
+              </RadioGroup>
+            </FormControl>
+          )}
+        />
 
-        <FormControl>
-          <FormLabel>Garden</FormLabel>
-          <RadioGroup>
-            <Stack direction="row">
-              <Radio value="yes">Yes</Radio>
-              <Radio value="no">No</Radio>
-            </Stack>
-          </RadioGroup>
-        </FormControl>
+        <Controller
+          name="hasGarden"
+          control={control}
+          render={({ field }) => (
+            <FormControl>
+              <FormLabel>Garden</FormLabel>
+              <RadioGroup id="hasGarden" {...field}>
+                <Stack direction="row">
+                  <Radio value="true">Yes</Radio>
+                  <Radio value="false">No</Radio>
+                </Stack>
+              </RadioGroup>
+            </FormControl>
+          )}
+        />
 
-        <FormControl>
-          <FormLabel>Features</FormLabel>
-          <CheckboxGroup>
-            <Stack direction="row">
-              <Checkbox value="1">1</Checkbox>
-              <Checkbox value="2">2</Checkbox>
-              <Checkbox value="3">3</Checkbox>
-            </Stack>
-          </CheckboxGroup>
-        </FormControl>
+        <Controller
+          name="features"
+          control={control}
+          render={({ field: {value, onChange, ...rest} }) => (
+            <FormControl>
+              <FormLabel>Features</FormLabel>
+              <CheckboxGroup value={value} onChange={onChange}>
+                <Stack direction="row">
+                  <Checkbox value="1" name="1" id="1">1</Checkbox>
+                  <Checkbox value="2" name="2" id="2">2</Checkbox>
+                  <Checkbox value="3" name="3" id="3">3</Checkbox>
+                </Stack>
+              </CheckboxGroup>
+            </FormControl>
+          )}
+        />
 
         <FormControl>
           <FormLabel>Location</FormLabel>
