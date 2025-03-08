@@ -1,4 +1,4 @@
-import Preferences from Objects.Preferences
+from Preferences import Preferences
 
 class User:
     def __init__(self, id, name, age):
@@ -10,4 +10,4 @@ class User:
         return f"Name: {self.name}, Age: {self.age}"
 
     def SourcePreferences(self, preferences):
-        if preferences
+

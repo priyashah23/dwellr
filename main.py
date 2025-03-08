@@ -1,4 +1,6 @@
 from flask import Flask
+from Objects import Property
+
 
 app = Flask(__name__)
 
@@ -9,7 +11,8 @@ def hello_world():
 @app.route("/property", methods=['GET']) # We will need an id of the property and the user
 def get_property(): 
     property_dict = {"num_of_bedrooms": 3}
-    return property_dict
+    property = Property.initiate_properties()
+    return property.__dict__
 
 @app.route("/user/<user_id>", methods=['GET'])
 def get_quiz_question():
@@ -24,3 +27,5 @@ def post_preferences():
 def update_preferences():
     pass
 
+if __name__ == "__main__":
+    app.run(debug=True)

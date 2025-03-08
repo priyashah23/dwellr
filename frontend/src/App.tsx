@@ -1,12 +1,8 @@
 import './App.css';
 import { Flex } from '@chakra-ui/react';
 import { useQuery } from '@tanstack/react-query';
-import axios from 'axios';
-
-const getProperties = async () => {
-  const response = await axios.get('/api/property');
-  return response.data;
-};
+import { getProperties } from './api';
+import { ReactComponent as Logo } from './assets/Dwellr_Logo.svg';
 
 function App() {
   const { isLoading, isError, data } = useQuery({ queryKey: ['todos'], queryFn: getProperties });
@@ -16,8 +12,8 @@ function App() {
   console.log(data);
 
   return (
-    <Flex as="main" minHeight="100vh" padding="2rem">
-      Hello
+    <Flex as="main" minHeight="100vh" padding={4} alignItems="center" justifyContent="center" bg="brand.primary">
+      <Logo />
     </Flex>
   );
 }

@@ -1,17 +1,11 @@
 import { extendTheme } from '@chakra-ui/react';
-
-const colors = {
-  brand: {
-    primary: '#8046f1',
-    secondary: '#322744',
-    tertiary: '#662dbe'
-  }
-};
+import colors from './colors';
+import space from './space';
 
 const config = {
   initialColorMode: 'light'
-}
+};
 
-const theme = extendTheme({ colors, config });
+const theme = extendTheme({ colors, config, space });
 
 export default theme;
