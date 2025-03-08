@@ -1,0 +1,26 @@
+version: '3.8'
+services:
+  db:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: dwellr
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+
+  web:
+    build: .
+    ports:
+      - "5000:5000"
+    environment:
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+      MYSQL_DATABASE: dwellr
+      MYSQL_HOST: db
+    depends_on:
+      - db
+
+volumes:
+  mysql-data:
