@@ -9,7 +9,8 @@ const Main = (props: FlexProps) => {
       padding={4}
       alignItems="center"
       justifyContent="center"
-      bg="white"
+      bg="brandPrimary"
+      color="white"
       gap={6}
       {...props}
     />

@@ -1,9 +1,10 @@
-import { Box, Heading, defineStyle, Image, Text } from '@chakra-ui/react';
+import { Box, Heading, defineStyle, Image, Text, Flex, Badge } from '@chakra-ui/react';
 import { PanInfo, motion } from 'framer-motion';
 import { useState } from 'react';
 import { PropertyCardProps, Property } from './types';
 
-const formatCurrency = (amount: number) => amount.toLocaleString('en-GB', { style: 'currency', currency: 'GBP', maximumFractionDigits: 0 });
+const formatCurrency = (amount: number) =>
+  amount.toLocaleString('en-GB', { style: 'currency', currency: 'GBP', maximumFractionDigits: 0 });
 
 const cardStyles = (isActive = false) =>
   defineStyle({
@@ -15,18 +16,58 @@ const cardStyles = (isActive = false) =>
     justifyContent: 'center',
     alignItems: 'center',
     cursor: 'grab',
-    background: isActive ? 'cardFeaturedBackgroundDefault' : 'cardPremiumBackgroundDefault',
+    background: isActive ? 'white' : 'graphicBackgroundAccentDark',
     borderRadius: 'md',
     border: '1px solid',
-    borderColor: isActive ? 'cardFeaturedBorderDefault' : 'cardPremiumBorderDefault'
+    borderColor: isActive ? 'cardDefaultBorderDefault' : 'cardDefaultBorderDefault',
+    padding: 4,
+    gap: 2
   });
 
 const PropertyDetails = ({ property }: { property: Property }) => {
   return (
     <>
-      <Heading color="textBody">{property.name}</Heading>
-      <Image src={property.image} />
-      <Text color="textBody2">{formatCurrency(property.value)}</Text>
+      <Heading color="textTitle" size="lg">
+        {property.name}
+      </Heading>
+
+      <Box borderRadius="inherit" border="inherit" position="relative">
+        <Image src={property.image} pointerEvents="none" borderRadius="inherit" border="inherit" />
+        <Badge
+          fontSize="sm"
+          position="absolute"
+          float="left"
+          left="2"
+          top="2"
+          bg="brandPrimary"
+          color="badgeLevel1Text"
+        >
+          {property.isFlat ? 'Flat' : 'House'}
+        </Badge>
+      </Box>
+
+      <Text color="textBody" fontSize="xl">
+        {formatCurrency(property.value)}
+      </Text>
+
+      <Flex gap={2} flexWrap="wrap">
+        {property.features.map((feature) => (
+          <Badge
+            fontSize="sm"
+            bg="badgeLevel4Background"
+            color="badgeLevel4Text"
+            border="1px solid"
+            borderColor="badgeLevel4Border"
+          >
+            {feature}
+          </Badge>
+        ))}
+        {property.isNewHome && (
+          <Badge fontSize="sm" bg="badgeNewHomeBackground" color="badgeNewHomeText">
+            New home
+          </Badge>
+        )}
+      </Flex>
     </>
   );
 };
