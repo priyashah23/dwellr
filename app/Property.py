@@ -1,7 +1,7 @@
 from csv import DictReader
 
 class Property:
-    def __init__(self, id, name, value, numberOfBedrooms, isNewHome : bool, hasGarden, image, features, location):
+    def __init__(self, id, name, value, numberOfBedrooms, isNewHome, hasGarden, image, features, location):
         self.id = id
         self.name = name
         self.value = value
@@ -19,7 +19,7 @@ def render_property() -> Property:
         list_of_dict = list(dict_reader)
         first_list = list_of_dict[0]
         print(first_list)
-        return Property(first_list["listing_id"], None, first_list["pricing.price"], first_list["total_bedrooms"], None, None, first_list["feature_list"], None,)
+        return Property(first_list["listing_id"], None, first_list["pricing.price"], first_list["total_bedrooms"], None, None, first_list["feature_list"], None, None)
  
 def select_property():
     pass
