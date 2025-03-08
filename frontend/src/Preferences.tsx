@@ -9,6 +9,7 @@ import {
   CheckboxGroup,
   Checkbox
 } from '@chakra-ui/react';
+import Main from './ui/layout/Main';
 
 // price range - number
 // bedrooms - number
@@ -20,15 +21,7 @@ import {
 
 const Preferences = () => {
   return (
-    <Flex
-      as="main"
-      flexDirection="column"
-      minHeight="100vh"
-      padding={4}
-      alignItems="center"
-      justifyContent="center"
-      bg="white"
-      gap={6}
+    <Main
     >
       <FormControl>
         <FormLabel>Max price</FormLabel>
@@ -85,7 +78,7 @@ const Preferences = () => {
         <FormLabel>Location</FormLabel>
         <Input type="text" />
       </FormControl>
-    </Flex>
+    </Main>
   );
 };
 
