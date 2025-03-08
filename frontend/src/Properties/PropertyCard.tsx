@@ -9,8 +9,8 @@ const formatCurrency = (amount: number) =>
 const cardStyles = (isActive = false) =>
   defineStyle({
     position: 'absolute',
-    height: '430px',
-    width: '300px',
+    height: '600px',
+    width: '500px',
     display: 'flex',
     flexDir: 'column',
     justifyContent: 'center',
@@ -24,34 +24,32 @@ const cardStyles = (isActive = false) =>
     gap: 2
   });
 
-const PropertyDetails = ({ property }: { property: Property }) => {
+const PropertyImage = ({ property, isActive = false }: { property: Property; isActive?: boolean }) => {
+  return (
+    <Box position="relative" border="1px solid" borderColor="badgeLevel4Border" borderRadius="md" >
+      {isActive ? <Image src={property.content[0].original} pointerEvents="none" borderRadius="inherit" maxHeight="300px"/> : null}
+      <Badge fontSize="sm" position="absolute" float="left" left="2" top="2" bg="brandPrimary" color="badgeLevel1Text">
+        {property.property_type === 'flat' ? 'Flat' : 'House'}
+      </Badge>
+    </Box>
+  );
+};
+
+const PropertyDetails = ({ property, isActive = false }: { property: Property; isActive?: boolean }) => {
   return (
     <>
-      <Heading color="textTitle" size="lg">
-        {property.name}
+      <Heading color="textTitle" size="sm">
+        {property.display_address}
       </Heading>
 
-      <Box borderRadius="inherit" border="inherit" position="relative">
-        <Image src={property.image} pointerEvents="none" borderRadius="inherit" border="inherit" />
-        <Badge
-          fontSize="sm"
-          position="absolute"
-          float="left"
-          left="2"
-          top="2"
-          bg="brandPrimary"
-          color="badgeLevel1Text"
-        >
-          {property.isFlat ? 'Flat' : 'House'}
-        </Badge>
-      </Box>
+      <PropertyImage property={property} isActive={isActive} />
 
       <Text color="textBody" fontSize="xl">
-        {formatCurrency(property.value)}
+        {formatCurrency(property['pricing.price'])}
       </Text>
 
       <Flex gap={2} flexWrap="wrap">
-        {property.features.map((feature) => (
+        {property.feature_list.map((feature) => (
           <Badge
             key={feature}
             fontSize="sm"
@@ -63,7 +61,7 @@ const PropertyDetails = ({ property }: { property: Property }) => {
             {feature}
           </Badge>
         ))}
-        {property.isNewHome && (
+        {property.new_home && (
           <Badge fontSize="sm" bg="badgeNewHomeBackground" color="badgeNewHomeText">
             New home
           </Badge>
@@ -99,7 +97,7 @@ const PropertyCard = ({ property, removeCard, active, ...props }: PropertyCardPr
           }}
           animate={{
             scale: 1.05,
-            rotate: `${property.name.length % 2 === 0 ? 6 : -6}deg`
+            rotate: `${property.display_address.length % 2 === 0 ? 6 : -6}deg`
           }}
           exit={{
             x: leaveX,
@@ -109,11 +107,12 @@ const PropertyCard = ({ property, removeCard, active, ...props }: PropertyCardPr
           }}
           {...props}
         >
-          <PropertyDetails property={property} />
+          <PropertyDetails property={property} isActive />
         </Box>
       ) : (
         <Box __css={cardStyles()} {...props}>
-          <PropertyDetails property={property} />
+          {/* <PropertyDetails property={property} /> */}
+          <PropertyImage property={property} />
         </Box>
       )}
     </>

@@ -19,17 +19,17 @@ const Properties = () => {
   const activeIndex = propeties.length - 1;
   const removeCard = (swipedCard: Property, swipeType: SwipeType) => {
     swipeType === 'like' && setLiked(liked + 1);
-    swipeType === 'nope' && setNoped(liked + 1);
+    swipeType === 'nope' && setNoped(noped + 1);
     setProperties((current) =>
       current.filter((card) => {
-        return card.id !== swipedCard.id;
+        return card.uuid !== swipedCard.uuid;
       })
     );
-    console.log(swipedCard, swipeType);
+    console.log(swipedCard, swipeType, noped, liked);
   };
 
   useEffect(() => {
-    if (liked > 0) {
+    if (liked > 5) {
       toast({
         title: 'Achievement Unlocked',
         description: "You've liked 10 properties so far, you're closer to your dream dwelling!",
@@ -41,7 +41,7 @@ const Properties = () => {
   }, [liked]);
 
   useEffect(() => {
-    if (noped > 0) {
+    if (noped > 5) {
       toast({
         title: 'Achievement Unlocked',
         description: "You've noped 10 properties so far, you might need to adjust your preferences!",
@@ -56,7 +56,7 @@ const Properties = () => {
     <Main>
       <AnimatePresence>
         {propeties.map((property, index) => (
-          <PropertyCard key={property.id} active={index === activeIndex} removeCard={removeCard} property={property} />
+          <PropertyCard key={property.uuid} active={index === activeIndex} removeCard={removeCard} property={property} />
         ))}
       </AnimatePresence>
     </Main>
