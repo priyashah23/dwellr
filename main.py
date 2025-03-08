@@ -1,5 +1,5 @@
 from flask import Flask
-from Objects import Property
+from app import Property
 
 
 app = Flask(__name__)
@@ -11,7 +11,7 @@ def hello_world():
 @app.route("/property", methods=['GET']) # We will need an id of the property and the user
 def get_property(): 
     property_dict = {"num_of_bedrooms": 3}
-    property = Property.initiate_properties()
+    property = Property.render_property()
     return property.__dict__
 
 @app.route("/user/<user_id>", methods=['GET'])
