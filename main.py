@@ -11,16 +11,16 @@ def get_property():
     property_dict = {"num_of_bedrooms": 3}
     return property_dict
 
-
-@app.route("user/<user_id>", methods=['GET'])
+@app.route("/user/<user_id>", methods=['GET'])
 def get_quiz_question():
-    pass
+    question_dict = {"question_id": 0}
+    return question_dict
 
-@app.route("user/<user_id>/preferences", methods=['POST'])
+@app.route("/user/<user_id>/preferences", methods=['POST'])
 def post_preferences():
     pass
 
-@app.route("user/<user_id>/preferences", methods=['PUT'])
+@app.route("/user/<user_id>/preferences", methods=['PUT'])
 def update_preferences():
     pass
 
