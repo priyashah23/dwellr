@@ -12,4 +12,6 @@ INSERT INTO "preference_questions" VALUES('Q00006','Min Price');
 INSERT INTO "preference_questions" VALUES('Q00007','Max Price');
 INSERT INTO "preference_questions" VALUES('Q00008','Min Rent');
 INSERT INTO "preference_questions" VALUES('Q00009','Max Rent');
+INSERT INTO "preference_questions" VALUES('Q00010','Flat or House');
+INSERT INTO "preference_questions" VALUES('Q00011','New Build');
 COMMIT;
