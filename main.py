@@ -12,7 +12,17 @@ mysql.init_app(app)
 
 @app.route("/")
 def hello_world():
-    connect()
+    conn = mysql.connect()
+    cursor = conn.cursor()
+
+    cursor.execute("SELECT * FROM listings")
+
+    myresult = cursor.fetchall()
+    print(myresult)
+
+    cursor.close()
+    conn.close()
+
     return "<p>Hello, World!</p>"
 
 @app.route("/property", methods=['GET']) # We will need an id of the property and the user
@@ -33,16 +43,5 @@ def post_preferences():
 def update_preferences():
     pass
 
-def connect():
-    try:
-        conn = mysql.connect()
-        print("success")
-
-        return conn
-    except (Exception) as e:
-        print(e, "connection error")
-        return None
-
 if __name__ == "__main__":
     app.run(debug=True)
-    connect()
