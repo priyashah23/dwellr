@@ -116,4 +116,8 @@ INSERT INTO "preference_answers" VALUES('A00109','Q00009','7000');
 INSERT INTO "preference_answers" VALUES('A00110','Q00009','8000');
 INSERT INTO "preference_answers" VALUES('A00111','Q00009','9000');
 INSERT INTO "preference_answers" VALUES('A00112','Q00009','10000+');
+INSERT INTO "preference_answers" VALUES('A00113','Q00010','Flat');
+INSERT INTO "preference_answers" VALUES('A00114','Q00010','House');
+INSERT INTO "preference_answers" VALUES('A00115','Q00011','Yes');
+INSERT INTO "preference_answers" VALUES('A00115','Q00011','No');
 COMMIT;
