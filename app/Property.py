@@ -2,11 +2,12 @@ from csv import DictReader
 import psycopg2
 
 class Property:
-    def __init__(self, id, name, value, numberOfBedrooms, isNewHome, hasGarden, image, features, location):
+    def __init__(self, id, name, value, numberOfBedrooms, isFlat, isNewHome, hasGarden, image, features, location):
         self.id = id
         self.name = name
         self.value = value
         self.numberOfBedrooms = numberOfBedrooms
+        self.isFlat = isFlat
         self.isNewHome = isNewHome
         self.hasGarden = hasGarden
         self.image = image
