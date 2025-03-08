@@ -8,7 +8,7 @@ import { BrowserRouter, Routes, Route } from 'react-router';
 import Preferences from './Preferences.tsx';
 import NotFound from './NotFound.tsx';
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
-import Properties from './Properties.tsx';
+import Properties from './Properties/Properties.tsx';
 
 const queryClient = new QueryClient();
 
