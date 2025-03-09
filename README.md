@@ -1,4 +1,4 @@
-# dwell
+# dwellr
 We love making renting fun and quirky
 
 ## HOW TO RUN THE BACKEND 
