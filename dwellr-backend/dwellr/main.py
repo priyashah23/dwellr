@@ -21,14 +21,14 @@ def migration():
 
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS listings (
-            listing_id  INT PRIMARY KEY
-            property_name      VARCHAR(255)
-            number_of_bedrooms INT         
-            image_link         TEXT        
-            is_new             TINYINT     
-            property_type      VARCHAR(255)
-            price              INT         
-            longitude          DECIMAL
+            listing_id  INT PRIMARY KEY,
+            property_name      VARCHAR(255),
+            number_of_bedrooms INT,         
+            image_link         TEXT,        
+            is_new             TINYINT,    
+            property_type      VARCHAR(255),
+            price              INT,       
+            longitude          DECIMAL,
             latitude           DECIMAL
         )
     ''')
