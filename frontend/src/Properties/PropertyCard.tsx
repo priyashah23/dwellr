@@ -6,7 +6,7 @@ import { PropertyCardProps, Property } from './types';
 const formatCurrency = (amount: number) =>
   amount.toLocaleString('en-GB', { style: 'currency', currency: 'GBP', maximumFractionDigits: 0 });
 
-const cardStyles = (isActive = false) =>
+export const cardStyles = (isActive = false) =>
   defineStyle({
     position: 'absolute',
     height: '600px',
