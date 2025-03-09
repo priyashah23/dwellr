@@ -1,5 +1,5 @@
 # dwellr
-We love making renting fun and quirky
+A web app that gamifies the process of finding the perfect house.
 
 ## HOW TO RUN THE BACKEND 
 1. `cd dwellr-backend`
