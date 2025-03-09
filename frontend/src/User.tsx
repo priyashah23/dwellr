@@ -1,5 +1,5 @@
-import { Tooltip, Flex, Text, Heading, Avatar, Input, IconButton } from '@chakra-ui/react';
-import { CalendarIcon, ChatIcon, DragHandleIcon, StarIcon } from '@chakra-ui/icons';
+import { Tooltip, Flex, Text, Heading, Avatar, Input, IconButton, Button } from '@chakra-ui/react';
+import { CalendarIcon, ChatIcon, DragHandleIcon, StarIcon, ViewIcon } from '@chakra-ui/icons';
 import Main from './ui/layout/Main';
 
 const User = () => {
@@ -29,6 +29,7 @@ const User = () => {
           <IconButton icon={<StarIcon />} aria-label="Achievements" size="lg" />
         </Tooltip>
       </Flex>
+      <Button rightIcon={<ViewIcon />} variant="contrast">Invite partner</Button>
     </Main>
   );
 };
