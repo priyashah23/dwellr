@@ -15,7 +15,7 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 logger = logging.getLogger(__name__)
 
 @app.route("/")
-def migration():
+def migration() -> None:
     conn = mysql.connect()
     cursor = conn.cursor()
 
@@ -34,7 +34,7 @@ def migration():
     ''')
 
     cursor.execute("""
-        INSERT INTO listings
+        INSERT IGNORE INTO listings
         VALUES
     (70807696, '23 Baker Street, Belfast G1 1DA', 4, 'https://lc.zoocdn.com/4e31c19a29b7bd25efcbd561582aae58b1b6f9c6.jpg', 0, 'TERRACED', 143535, 52.82644, -0.663736),
     (17397437, '48 High Street, Cardiff SW1A 1AA', 4, 'https://lc.zoocdn.com/e0d5c832cf3031fae08cc6c7e2a6833f20b418dc.png', 0, 'SEMI_DETATCHED', 964818, 56.731166, 0.64357),
@@ -85,11 +85,11 @@ def migration():
     (53136747, '87 Church Lane, Belfast CF10 1EP', 4, 'https://lc.zoocdn.com/cb97add4cddbb1b746dd5874a83b057e0d13a0d5.jpg', 0, 'FLAT', 446013, 56.115478, -0.774194),
     (43467847, '96 Baker Street, Manchester SW1A 1AA', 4, 'https://lc.zoocdn.com/3474a8f46af6b37c14bef2774c89ad03fbbbc926.jpg', 1, 'SEMI_DETACHED', 573798, 51.468523, 0.767301),
     (21853611, '44 Church Lane, Aberdeen BT1 5GS', 4, 'https://lc.zoocdn.com/f5d4aa0f55bdf67e601f299704b7d61e587d2863.jpg', 1, 'TERRACED', 676319, 55.116493, -0.011403)
-    ON CONFLICT DO NOTHING;
     """)
 
     cursor.close()
     conn.close()
+    return '<p> Migration Successful </p>'
 
 @app.route("/user/create-user", methods=['POST'])
 def create_user():
