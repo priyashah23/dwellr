@@ -1,6 +1,7 @@
 import logging
 from flask import Flask, jsonify, request
 from flaskext.mysql import MySQL
+import json
 import os
 
 app = Flask(__name__)
@@ -139,17 +140,13 @@ def get_property():
         is_new_home = False
         max_price = 1000000
         
-    cursor.execute('''
-        SELECT * FROM listings
-        WHERE number_of_bedrooms = %s
-        AND is_new IS %s
-        AND price < %s;
-    ''', number_of_bedrooms, is_new_home, max_price)
+    cursor.execute("SELECT listing_id, property_name, number_of_bedrooms, image_link, is_new, property_type, price FROM listings WHERE number_of_bedrooms = %s AND is_new = %s AND price < %s", (number_of_bedrooms, is_new_home, max_price))
 
     result = cursor.fetchall()
-    propery_list = []
+    logger.info(result)
+    property_list = []
     for row in result:
-        pass
+        property_list.append(json.dumps(row))
 
     cursor.close()
     conn.close()
