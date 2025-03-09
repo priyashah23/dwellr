@@ -9,6 +9,7 @@ import Preferences from './Preferences/Preferences.tsx';
 import NotFound from './NotFound.tsx';
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
 import Properties from './Properties/Properties.tsx';
+import User from './User.tsx';
 
 const queryClient = new QueryClient();
 
@@ -22,6 +23,7 @@ createRoot(document.getElementById('root')!).render(
             <Route path="/" element={<App />} />
             <Route path="/preferences" element={<Preferences />} />
             <Route path="/properties" element={<Properties />} />
+            <Route path="/user" element={<User />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>

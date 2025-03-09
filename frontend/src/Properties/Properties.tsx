@@ -5,11 +5,13 @@ import PropertyCard from './PropertyCard';
 import PROPERTIES from './data';
 import { Property, SwipeType } from './types';
 import { useToast } from '@chakra-ui/react';
-// import { useQuery } from '@tanstack/react-query';
-// import { getProperties } from './api';
+import { useQuery } from '@tanstack/react-query';
+import { getProperty } from '../api';
 
 const Properties = () => {
-  // const { isLoading, isError, data } = useQuery({ queryKey: ['todos'], queryFn: getProperties });
+  const { isLoading, isError, data } = useQuery({ queryKey: ['getProperty'], queryFn: getProperty });
+
+  console.log(data)
 
   const [liked, setLiked] = useState(0);
   const [noped, setNoped] = useState(0);

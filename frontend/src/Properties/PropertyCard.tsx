@@ -26,8 +26,10 @@ const cardStyles = (isActive = false) =>
 
 const PropertyImage = ({ property, isActive = false }: { property: Property; isActive?: boolean }) => {
   return (
-    <Box position="relative" border="1px solid" borderColor="badgeLevel4Border" borderRadius="md" >
-      {isActive ? <Image src={property.content[0].original} pointerEvents="none" borderRadius="inherit" maxHeight="300px"/> : null}
+    <Box position="relative" border="1px solid" borderColor="badgeLevel4Border" borderRadius="md">
+      {isActive ? (
+        <Image src={property.content[0].original} pointerEvents="none" borderRadius="inherit" maxHeight="300px" />
+      ) : null}
       <Badge fontSize="sm" position="absolute" float="left" left="2" top="2" bg="brandPrimary" color="badgeLevel1Text">
         {property.property_type === 'flat' ? 'Flat' : 'House'}
       </Badge>
@@ -38,17 +40,17 @@ const PropertyImage = ({ property, isActive = false }: { property: Property; isA
 const PropertyDetails = ({ property, isActive = false }: { property: Property; isActive?: boolean }) => {
   return (
     <>
-      <Heading color="textTitle" size="sm">
+      <Heading color="textTitle" size="md" mb={2}>
         {property.display_address}
       </Heading>
 
       <PropertyImage property={property} isActive={isActive} />
 
-      <Text color="textBody" fontSize="xl">
+      <Text color="textBody" fontSize="2xl" fontWeight="bold">
         {formatCurrency(property['pricing.price'])}
       </Text>
 
-      <Flex gap={2} flexWrap="wrap">
+      <Flex gap={2} flexWrap="wrap" py={2}>
         {property.feature_list.map((feature) => (
           <Badge
             key={feature}
@@ -67,6 +69,13 @@ const PropertyDetails = ({ property, isActive = false }: { property: Property; i
           </Badge>
         )}
       </Flex>
+
+      <Text color="textBody" fontSize="lg">
+        <strong>Bedrooms:</strong> {property.total_bedrooms}
+      </Text>
+      <Text color="textBody" fontSize="lg">
+        <strong>Bathrooms:</strong> {property.bathrooms}
+      </Text>
     </>
   );
 };
@@ -111,7 +120,6 @@ const PropertyCard = ({ property, removeCard, active, ...props }: PropertyCardPr
         </Box>
       ) : (
         <Box __css={cardStyles()} {...props}>
-          {/* <PropertyDetails property={property} /> */}
           <PropertyImage property={property} />
         </Box>
       )}
