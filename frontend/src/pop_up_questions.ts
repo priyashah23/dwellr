@@ -20,3 +20,5 @@ const popUpQuestions = [
     answers: ["Yes", "No"]
   }
 ];
+
+export default popUpQuestions

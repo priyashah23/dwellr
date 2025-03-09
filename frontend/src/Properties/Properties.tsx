@@ -2,9 +2,10 @@ import Main from '../ui/layout/Main';
 import { AnimatePresence } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import PropertyCard, { cardStyles } from './PropertyCard';
-import PROPERTIES from './data';
+import PROPERTIES from './listing_data';
+import QUESTIONS from '../pop_up_questions'
 import { Property, SwipeType } from './types';
-import { Box, Flex, Heading, IconButton, Text, Tooltip, useToast } from '@chakra-ui/react';
+import { Box, Flex, Heading, IconButton,  Tooltip, useToast } from '@chakra-ui/react';
 import { CheckIcon, CloseIcon } from '@chakra-ui/icons';
 import { useQuery } from '@tanstack/react-query';
 import { getProperty } from '../api';
@@ -18,6 +19,7 @@ const Properties = () => {
   const [noped, setNoped] = useState(0);
   const [swiped, setSwiped] = useState(0);
   const [hasAnswered, setHasAnswered] = useState(false);
+  const [questionIndex, setQuestionIndex] = useState(0)
   const toast = useToast();
 
   const [propeties, setProperties] = useState(PROPERTIES);
@@ -67,7 +69,7 @@ const Properties = () => {
       {showQuestion ? (
         <Box __css={cardStyles()}>
           <Heading color="textTitle" size="lg">
-            Question text?
+            {QUESTIONS[questionIndex].question}
           </Heading>
           <Flex justifyContent="space-between" width="60%" mt={12}>
             <Tooltip label="Yes" fontSize="md">
@@ -78,7 +80,10 @@ const Properties = () => {
                 bg="functionalSuccess"
                 _hover={{bg: 'green'}}
                 color="white"
-                onClick={() => setHasAnswered(true)}
+                onClick={() => {
+                  setHasAnswered(true)
+                  setQuestionIndex(questionIndex + 1)
+                }}
               />
             </Tooltip>
             <Tooltip label="No" fontSize="md">
@@ -89,7 +94,10 @@ const Properties = () => {
                 bg="functionalFailureContrast"
                 _hover={{bg: 'red'}}
                 color="white"
-                onClick={() => setHasAnswered(true)}
+                onClick={() => {
+                  setHasAnswered(true)
+                  setQuestionIndex(questionIndex + 1)
+                }}
               />
             </Tooltip>
           </Flex>
