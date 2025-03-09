@@ -5,7 +5,7 @@ import Main from './ui/layout/Main';
 const User = () => {
   return (
     <Main>
-      <Avatar size="2xl" name="Priya" />
+      <Avatar size="2xl" name="Priya Shah" bg="avatarBrandBackgroundDefault" color="badgeSavedText"/>
       <Heading>Hi Priya 👋</Heading>
       <Flex alignItems="center" gap={2}>
         <Text>Level 1</Text>

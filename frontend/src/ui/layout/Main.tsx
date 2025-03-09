@@ -28,7 +28,7 @@ const Main = (props: FlexProps) => {
             cursor="pointer"
             mr="auto"
           />
-          <Avatar name="Priya" onClick={() => navigate('/user')} cursor="pointer" />
+          <Avatar name="Priya Shah" onClick={() => navigate('/user')} cursor="pointer" bg="avatarBrandBackgroundDefault" color="badgeSavedText" />
           <IconButton aria-label="Preferences" icon={<SettingsIcon />} onClick={() => navigate('/preferences')} />
         </Flex>
       ) : null}
