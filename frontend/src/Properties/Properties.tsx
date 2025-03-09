@@ -67,7 +67,7 @@ const Properties = () => {
   return (
     <Main>
       {showQuestion ? (
-        <Box __css={cardStyles()}>
+        <Box __css={cardStyles()} textAlign="center">
           <Heading color="textTitle" size="lg">
             {QUESTIONS[questionIndex].question}
           </Heading>
